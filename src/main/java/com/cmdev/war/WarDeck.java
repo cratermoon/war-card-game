@@ -24,4 +24,14 @@ public class WarDeck
 	{
 		return !playingDeck.isEmpty();
 	}
+
+	public Card dealCard() {
+		if(hasMoreCards())
+		{
+			return playingDeck.deal();
+		} else
+		{
+			return null;
+		}
+	}
 }

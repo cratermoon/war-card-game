@@ -5,6 +5,17 @@ import java.util.List;
 
 public class Player {
 	private List<Card> playerHand = new ArrayList();
+	private int id;
+
+	public Player(int playerId)
+	{
+		id = playerId;
+	}
+
+	public int getId()
+	{
+		return id;
+	}
 
 	public void addCard(Card card) {
 		playerHand.add(card);
@@ -19,10 +30,14 @@ public class Player {
 	}
 	public Card topCard() {
 		if (cardsInHand() != 0) {
-			return playerHand.remove(cardsInHand() - 1);
+			return playerHand.remove(0);
 		} else {
 			return null;
 		}
 
+	}
+	public String toString()
+	{
+		return "Player id: "+id;
 	}
 }

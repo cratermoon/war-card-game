@@ -9,14 +9,16 @@ import org.junit.*;
 public class PlayerTest {
 	
 	private Player player;
+	int testPlayerId = 2187;
 
 	@Before
 	public void setup() {
-		player = new Player();
+		player = new Player(testPlayerId);
 	}
 
 	@Test
 	public void testPlayer() {
+		assertEquals("Wrong ID for test Player", testPlayerId, player.getId());
 		assertFalse("Player should not have any cards yet", player.hasMoreCards());
 		assertEquals("Player should have 0 cards", 0, player.cardsInHand());
 		assertNull("top card should be null", player.topCard());
