@@ -45,11 +45,4 @@ public class SimpleDeck implements Deck {
 	{
 		return deckOfCards.isEmpty();
 	}
-
-
-	public boolean hasMoreCards()
-	{
-		return !isEmpty();
-	}
-
 }
