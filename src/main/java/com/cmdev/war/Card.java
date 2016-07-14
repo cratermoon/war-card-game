@@ -7,21 +7,21 @@ package com.cmdev.war;
 public class Card
 {
 
-	private Suit suit;
-	private Rank rank;
+	private int suit;
+	private int rank;
 
-	public Card(Suit suit, Rank rank)
+	public Card(int aSuit, int aRank)
 	{
-		suit = suit;
-		rank = rank;
+		suit = aSuit;
+		rank = aRank;
 	}	
 
-	public Suit getSuit()
+	public int getSuit()
 	{
 		return suit;
 	}
 
-	public Rank getRank()
+	public int getRank()
 	{
 		return rank;
 	}

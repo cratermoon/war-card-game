@@ -4,7 +4,7 @@
 -->
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.nwea</groupId>
+  <groupId>com.cmdev</groupId>
   <artifactId>war</artifactId>
   <name>War, The Card Game</name>
   <version>0.1-SNAPSHOT</version>

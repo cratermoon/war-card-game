@@ -1,16 +1,41 @@
 package com.cmdev.war;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class War
 {
+	private int numberOfSuits;
+	private int numberOfRanks;
+	private int numberOfPlayers;
+	private List<Player> players;
 
-public void play( int numberOfSuits,
-	int numberOfRanks, int numberOfPlayers )
-	{
+	public void setupPlayers() {
+		players = new ArrayList(numberOfPlayers);
+		for (int iter = 0; iter < numberOfPlayers; iter++) {
+			players.add(new Player());
+		}
 
-		Deck deck = new PlayingDeck();
-		deck.create(numberOfRanks, numberOfPlayers);
-		deck.shuffle();
-		deck.deal();
-		//deck.hand().untilNoMoreCards();
 	}
+	public void setupGame() {
+		Deck playingDeck = new PlayingDeck();
+		playingDeck.create(numberOfRanks, numberOfPlayers);
+		playingDeck.shuffle();
+		playingDeck.deal();
+	}
+
+	/* Required as is by design document */
+	public void play(int numberOfSuits,
+		int numberOfRanks, int numberOfPlayers)
+	{
+		this.numberOfSuits = numberOfSuits;
+		this.numberOfRanks = numberOfRanks;
+		this.numberOfPlayers = numberOfPlayers;
+		setupPlayers();
+		setupGame();
+		endGame();
+	}
+	public void endGame() {
+		System.out.println("Game over man, game over!");
+	};
 }
