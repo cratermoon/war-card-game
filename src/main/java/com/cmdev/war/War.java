@@ -18,10 +18,7 @@ public class War
 
 	}
 	public void setupGame() {
-		Deck playingDeck = new PlayingDeck();
-		playingDeck.create(numberOfRanks, numberOfPlayers);
-		playingDeck.shuffle();
-		playingDeck.deal();
+		WarDeck playingDeck = new WarDeck(numberOfRanks, numberOfPlayers);
 	}
 
 	/* Required as is by design document */

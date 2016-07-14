@@ -13,8 +13,4 @@ public interface Deck
 
 	/* deal a card from the deck */
 	public Card deal();
-
-	public int numberOfCards();
-
-	public boolean hasMoreCards();
 }

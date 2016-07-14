@@ -4,17 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class DeckTest {
+public class WarDeckTest {
 
-	private Deck testDeck;
+	private WarDeck testDeck;
 	 /* standard playing card deck */
 	private int numberOfTestSuits = 4;
 	private int numberOfTestRanks = 13;
 
 	@Before
 	public void setupDeck() {
-		testDeck = new PlayingDeck();
-		testDeck.create(numberOfTestSuits, numberOfTestRanks);
+		testDeck = new WarDeck(numberOfTestSuits, numberOfTestRanks);
 		assertTrue("Deck should have cards in it", testDeck.hasMoreCards());
 	}
 
