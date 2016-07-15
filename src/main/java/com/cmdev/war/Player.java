@@ -18,7 +18,10 @@ public class Player {
 	}
 
 	public void addCard(Card card) {
-		playerHand.add(card);
+		if (card != null)
+		{
+			playerHand.add(card);
+		}
 	}
 
 	public int cardsInHand() {

@@ -17,22 +17,25 @@ public class Battle
 		Player winningPlayer = players.get(0);
 		while(players.size() > 1 && playerIterator.hasNext()) {
 			Player currentPlayer = playerIterator.next();
-			// player is out of the game when they run out of cards
-			/* get the card and add it to the list of cards for this round */
-			Card currentCard = currentPlayer.topCard();
-			currentRoundCards.add(currentCard);
-			if (currentCard.compareTo(winningCard) > 0) {
-				currentPlayer.addCard(currentCard);
-				winningCard = currentCard;
-				winningPlayer = currentPlayer;
-				System.out.println(winningCard + " wins battle for "+ currentPlayer);
-			} else if (currentCard.compareTo(winningCard) == 0)
+			if(currentPlayer.hasMoreCards())
 			{
-				OpenWarfare warfare = new OpenWarfare();
-				warfare.goToWar(playerIterator, currentRoundCards);
-			}
-			if(!currentPlayer.hasMoreCards())
-			{
+				/* get the card and add it to the list of cards for this round */
+				Card currentCard = currentPlayer.topCard();
+				System.out.println("Player "+ currentPlayer.getId() + " has card "+currentCard+ " vs "+winningCard);
+				currentRoundCards.add(currentCard);
+				// if the player wins, the player's card and the other card(s) go into the player's hand
+				if (currentCard.compareTo(winningCard) > 0) {
+					currentRoundCards.addCard(winningCard);
+					winningCard = currentCard;
+					winningPlayer = currentPlayer;
+					System.out.println(winningCard + " wins battle for "+ currentPlayer);
+				} else if (currentCard.compareTo(winningCard) == 0)
+				{
+					OpenWarfare warfare = new OpenWarfare();
+					warfare.goToWar(winningPlayer, playerIterator, currentRoundCards);
+				}
+			} else {
+				// player is out of the game when they run out of cards
 				System.out.println("Player "+ currentPlayer.getId() + " is out of cards, removing from game");
 				playerIterator.remove();
 			}
