@@ -4,8 +4,6 @@ package com.cmdev.war;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.matchers.JUnitMatchers.*;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;

@@ -1,5 +1,7 @@
 package com.cmdev.war;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -73,5 +75,17 @@ public class PlayerTest {
 		assertEquals("Player should have no cards", 0, player.cardsInHand());
 		topCard = player.topCard();
 		assertNull("top card should be null", player.topCard());
+	}
+
+	@Test
+	public void testAddCards()
+	{
+		Player testPlayer = new Player(1);
+		List<Card> moreCards = new ArrayList<Card>(2);
+		testPlayer.addCard(new Card(1,1));
+		moreCards.add(new Card(2,2));
+		moreCards.add(new Card(3,3));
+		testPlayer.addAll(moreCards);
+		assertEquals("Player should have 3 cards", 3, testPlayer.cardsInHand());
 	}
 }

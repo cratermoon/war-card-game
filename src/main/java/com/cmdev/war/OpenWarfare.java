@@ -6,36 +6,53 @@ import java.util.List;
 
 public class OpenWarfare
 {
-	public void goToWar(Player winningPlayer, ListIterator<Player> playerIterator, List<Card> currentRoundCards)
+	private int warsFought;
+
+	public void goToWar(List<Player> players, List<Card> cardsPlayedThisRound)
 	{
 		System.out.println("Let's have a war!");
-		// Open Warfare has broken out. Players fight fight fight
-		// pull two cards, first up, first down
-		// compare upcards
-		// until upcard wins or a player out of cards
-		Card winningCard = null;
-		boolean atWar = true;
-		while(playerIterator.hasNext() && atWar) {
+		// just like battle except for 2 cards at a time?
+		ListIterator<Player> playerIterator = players.listIterator();
+	
+		// Prime the loop
+		Player roundWinner = playerIterator.next();
+		Card winningCard = roundWinner.topCard();
+		Card downCard = roundWinner.topCard();
+		cardsPlayedThisRound.add(winningCard);
+		cardsPlayedThisRound.add(downCard);
+		while(players.size() > 1 && playerIterator.hasNext())
+		{
 			Player currentPlayer = playerIterator.next();
-			// TODO handle case where topCard is null (it can happen)
-			Card upCard = currentPlayer.topCard();
-			Card downCard = currentPlayer.topCard();
-			currentRoundCards.add(upCard);
-			currentRoundCards.add(downCard);
-			if (upCard.compareTo(winningCard) > 0) {
-				currentPlayer.addCard(upCard);
-				currentPlayer.addCard(downCard);
-				winningCard = upCard;
-				winningPlayer = currentPlayer;
-				System.out.println(winningCard + " wins war for "+ currentPlayer);
-				atWar = false;
-			}
-			if(!currentPlayer.hasMoreCards())
+			if (currentPlayer.hasMoreCards())
 			{
-				System.out.println("Player "+ currentPlayer.getId() + " is out of cards, removing from game");
+				Card nextCard = currentPlayer.topCard();
+				downCard = currentPlayer.topCard();
+				cardsPlayedThisRound.add(nextCard);
+				cardsPlayedThisRound.add(downCard);
+				if (nextCard.compareTo(winningCard) > 0)
+				{
+					//System.out.println("Player "+currentPlayer+ " wins");
+					winningCard = nextCard;
+					roundWinner = currentPlayer;
+				} else if (nextCard.compareTo(winningCard) == 0)
+				{
+					// wartime
+					playerIterator.remove();
+				} else {
+					System.out.println("Player "+roundWinner+ " wins");
+				}
+			} else {
+				System.out.println("Removing player with no cards");
 				playerIterator.remove();
 			}
 		}
+		roundWinner.addAll(cardsPlayedThisRound);
+		warsFought++;
+		System.out.println(warsFought + " battles");
+	}
 
+	public int getWarsFought()
+	{
+		return warsFought;
 	}
 }

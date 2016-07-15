@@ -23,7 +23,6 @@ public class War
 	}
 	public void setupGame() {
 		WarDeck playingDeck = new WarDeck(numberOfSuits, numberOfRanks);
-		//boolean keepDealing = playingDeck.hasMoreCards();
 		System.out.println("Dealing..");
 		while (playingDeck.hasMoreCards()) {
 			// prefer simple loop vs Iterator here to avoid excessive object creation 
@@ -31,7 +30,6 @@ public class War
 			{
 
 				players.get(iter).addCard(playingDeck.dealCard());
-				//keepDealing = playingDeck.hasMoreCards();
 			}
 		}
 		System.out.println("..done");

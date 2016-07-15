@@ -1,6 +1,7 @@
 package com.cmdev.war;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -24,6 +25,10 @@ public class Player {
 		}
 	}
 
+	public void addAll(List<Card> cards)
+	{
+		playerHand.addAll(cards);
+	}
 	public int cardsInHand() {
 		return playerHand.size();
 	}
